@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test09.html</title>
+</head>
+<body>
+    <button onclick="clearAll()">삭제</button>
+    <script>
+        function clearAll(){
+
+            let isDelete = confirm("정말로 삭제하시겠습니까?");
+            
+            //만일 isDelete에 true가 들어 있으면 { } 안에 있는 code를 실행하기
+            if(isDelete == true) { //isDelete가 true면 실행이 된다
+                console.log("모두 삭제 완료 했습니다.");
+            }
+
+        }
+    </script>
+</body>
+</html>

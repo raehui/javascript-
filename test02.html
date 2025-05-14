@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test02.html</title>
+</head>
+<body>
+    <div>div1</div>
+    <div id="one">div2</div>
+    <div>div3</div>
+    <button onclick="change()">변경하기</button>
+    <script> //로딩 시점
+        //변경하기 버튼을 눌렀을때 아래의 javascript 실행하기
+        
+        function change(){
+            document.querySelector("#one").innerText = "김구라";
+        }
+
+        // document.querySelector("#one").innerText = "김구라";
+    </script>
+</body>
+</html>

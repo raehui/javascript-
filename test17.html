@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test17.html</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>canvas에 그림을 그려 보아요!</h1>
+    <canvas width="500" height="500" id="myCanvas"></canvas> 
+    <script>
+        //canvas 요소를 제어할 수 있는 참조값
+        let canvas = document.querySelector("#myCanvas"); //myCanvas를 선택함(난 이걸 조절할 거임)
+        
+        //canvas 에 그림을 그릴 수 있는 도구의 참조값 얻어내기
+        let context = canvas.getContext("2d"); //canvas에 그림을 그릴 수 있게끔 도구 선택함
+        
+        //설정
+        context.lineWidth =10;
+        context.lineCap ="round";
+        context.lineJoin="round";
+        context.strokeStyle ="green";
+
+        //동작
+        context.beginPath();
+        context.moveTo(100,100);
+        context.lineTo(200,200);
+        context.lineTo(300,100);
+        context.lineTo(400,150);
+        context.stroke();
+        context.closePath();
+
+        // context.drawText(100,100,"kimgura")
+    </script>
+</body>
+</html>

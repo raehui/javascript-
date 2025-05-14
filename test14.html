@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test14.html</title>
+</head>
+<body>
+    <h1>Example</h1>
+    <h1 id="two">Example</h1>
+    <h1>Example</h1>
+    <button onclick="decide()">홀짝 판별하기</button>
+    <p id="one"></p>
+    
+    <script>
+        
+        document.querySelector("h1").style.color ="red"; //document.querySelector("h1")이 키값을 가져와서 사용
+        document.querySelector("#two").style.color ="blue";  
+
+        //숫자를 입력받아서 입력한 숫자가 짝수인지 홀수 인지를 확인해서 콘솔에 출력하는 프로그래밍       
+        function decide(){
+        let num =prompt("임의의 숫자를 입력하세요!");
+        
+        // num 을 2로 나눈다
+        let result = num%2;  
+
+        if(result==0){
+            console.log(num + "은 짝수 입니다.");
+            document.querySelector("#one").innerText=num + "은 짝수 입니다.";
+        }else {
+            console.log(num +"은 홀수 입니다.");
+            document.querySelector("#one").innerText=num + "은 홀수 입니다.";
+        }        
+    }
+
+    </script>
+    
+</body>
+</html>

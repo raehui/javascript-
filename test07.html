@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test07.html</title>
+</head>
+<body>
+    <script>
+        //어떤 사람 한명의 정보를 object에 저장해 보자
+        let person1 = {
+            num: 1,
+            name: "kim",
+            isMan: true,
+            health: {
+                height:180,
+                weight:90,
+                blood:"AB"
+            },
+            foods: ["짜장면", "짬뽕","라면"], 
+            say: function(){
+                console.log("안녕하세요!");
+            }
+        };
+        
+        /*
+            위 object를 분석해 보면
+            num이라는 key값으로 number type
+            name이라는 key값으로 string type "kim"
+            isMan이란 key값으로 boolean type true
+            health이란 key값으로 object type
+            foods란 key값을 array type
+            say라는 key값으로 function type
+            이 저장된 것을 알수가 있다.
+        */
+        
+    </script>
+</body>
+</html>

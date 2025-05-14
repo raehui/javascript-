@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rabbitShoot1.html</title>
+    <style>
+        canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="500" id="myCanvas"></canvas>
+    <script>
+        let canvas=document.querySelector("#myCanvas");
+        //canvas 요소에 그림을 그릴수 있는 도구의 참조값 얻어오기 
+        let context=canvas.getContext("2d");
+
+        //스나이프 이미지 로딩하기
+        var snipeImg=new Image();
+        snipeImg.src="images/snipe.png";
+
+        //스나이프 이미지의 초기 좌표
+        let snipeX=400;
+        let snipeY=250;
+
+        //배경이미지 로딩
+        let backImg=new Image();
+        backImg.src="images/background.jpg";
+
+        //효과음 로딩
+        let fireSound=new Audio("sounds/fire.wav");
+        let screamSound=new Audio("sounds/birddie.mp3");
+
+        //총알 구멍 이미지 로딩
+        let holeImg=new Image();
+        holeImg.src="images/hole.png";
+        //총알 구녕의 정보를 누적시킬 배열을 미리 준비한다 
+        let holes = [];
+
+        //토끼 이미지 2개를 로딩해서 배열에 담아두기
+        let rabbitImg1=new Image();
+        rabbitImg1.src="images/rabbit_1.png";
+        let rabbitImg2=new Image();
+        rabbitImg2.src="images/rabbit2.png";
+
+        let rabbitImgs = [rabbitImg1, rabbitImg2];
+
+        //토끼의 초기 좌표
+        let rabbitX=400;
+        let rabbitY=250;
+        //토끼 이미지 인덱스를 담을 변수 선언하고 초기값 0 대입 
+        let rabbitIndex=0;
+
+        //화면이 다시 그려지는 횟수를 카운트할 변수 
+        let count=0;
+
+        context.font="30px Consolas";
+        context.fillStyle="yellow";
+
+        //토끼를 잡은 횟수를 저장할 변수 만들고 초기값 0 대입
+        let point=0;
+
+        //파편 이미지를 저장할 배열
+        let fragmentImgs = [];
+
+        for(let i=0; i<5; i++){
+            let tmp = new Image();
+            tmp.src="images/r"+i+".png";
+            fragmentImgs.push(tmp);
+        }
+
+        //토끼 파편 하나하나의 정보(object) 를 저장할 배열
+        let fragments=[];
+
+        //초당 100번 호출되는 함수 등록 
+        setInterval(function(){
+            //4각형 영역을 설정해서 canvas 를 지우기
+            //context.clearRect(0, 0, 800, 500);
+            //배경이미지를 canvas 의 크기에 맞게 그리기
+            context.drawImage(backImg, 0, 0, 800, 500);
+
+            //반복문 돌면서 총알 구멍 이미지 그리기
+            for(let i=0; i<holes.length; i++){
+                //총알 구멍의 정보를 담고 있는 i번째 object 를 불러온다.
+                let tmp=holes[i];
+                context.drawImage(holeImg, tmp.x-10, tmp.y-10, 20, 20);
+            }
+            //토끼 파편 그리기
+            for(let i=0; i<fragments.length; i++){
+                //토끼 파편의 정보를 담고 있는 i번째 object  를 불러온다.
+                let tmp=fragments[i];
+                context.drawImage(fragmentImgs[tmp.type], tmp.x-50, tmp.y-50, 100, 100);
+            }
+            //토끼 파편 움직이기
+            for(let i=0; i<fragments.length; i++){
+                //토끼 파편의 정보를 담고 있는 i번째 object  를 불러온다.
+                let tmp=fragments[i];
+                //speedX, speedY 값 만큼 x, y 좌표를 변경하기 
+                tmp.x = tmp.x + tmp.speedX;
+                tmp.y = tmp.y + tmp.speedY;
+            }
+
+            //토끼 그리기
+            context.drawImage(rabbitImgs[rabbitIndex], rabbitX-50, rabbitY-50, 100, 100);
+            
+            //카운트를 증가 시키다가
+            count++;
+            //count 가 20 의 배수일때만 rabbitIndex 를 증가 시킨다 
+            if(count%20 == 0){
+                //인덱스 증가 시키기
+                rabbitIndex = rabbitIndex+1;
+                //만일 존재하는 인덱스가 아니라면
+                if(rabbitIndex == 2){
+                    //다시 0번 인덱스로 변경한다.
+                    rabbitIndex=0;
+                }
+            }
+            //canvas의 정 중앙에 테스트로 snipe 이미지를 그려보기 
+            context.drawImage(snipeImg, snipeX-50, snipeY-50, 100, 100);
+            //점수 출력하기
+            context.fillText("Point:"+point, 10, 40);
+           
+            if(count%100 == 0){
+                //토끼를 랜덤한 위치로 이동시킨다
+                rabbitX = Math.random()*800;
+                rabbitY = Math.random()*500;
+            }
+            
+        }, 10);
+        
+        document.querySelector("#myCanvas").addEventListener("mousemove", function(e){
+            //이벤트가 발생한 마우스의 x, y 좌표를 snipe 의 좌표에 대입하기
+            snipeX = e.offsetX;
+            snipeY = e.offsetY;
+        });
+
+        document.querySelector("#myCanvas").addEventListener("mousedown", function(e){
+            //강제로 재생 위치를 처음으로 변경한다음 
+            fireSound.currentTime=0;
+            // play 를 하면 연속 재생이 가능하다
+            fireSound.play();
+
+            //총알의 위치를 object 에 담는다
+            let hole = {x:e.offsetX, y:e.offsetY};
+            //object 를 배열에 누적 시키다.
+            holes.push(hole);
+            //토끼가 총에 맞았는지 여부를 알아내서
+            let isShooted = e.offsetX > rabbitX-50 &&
+                            e.offsetX < rabbitX+50 &&
+                            e.offsetY > rabbitY-30 &&
+                            e.offsetY < rabbitY+50 ;
+            //만일 토끼가 맞았다면? 필요한 동작을 실행한다.
+            if(isShooted){
+                screamSound.currentTime=0;
+                screamSound.play(); //비명 지르기
+                point++;//점수 올리기 
+                //토끼 파편 5개 만들어서 fragments 배열에 누적 시키기 
+                for(let i=0; i<5; i++){
+                    //빈 object 를 만들어서
+                    let tmp = {};
+                    //토끼의 현재 좌표를 파편의 초기좌표로 부여한다.
+                    tmp.x = rabbitX;
+                    tmp.y = rabbitY;
+                    //파편의 속도를 random 하게 부여한다 (음수도 나올수 있도록)
+                    tmp.speedX = Math.random()*10 - 5;
+                    tmp.speedY = Math.random()*10 - 5;
+                    //파편의 type 을 부여
+                    tmp.type = i;
+                    //fragments 배열에 누적 시키기
+                    fragments.push(tmp);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

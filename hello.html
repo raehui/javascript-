@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 웹페이지</title>
+    <style>
+        p{
+            color: red;
+            font-size: 30px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <p>안녕하세요! 이제 시작이군요</p>
+    <p>어쩌구..</p>
+    <p>저쩌구..</p>
+    <button>나의 버튼</button>
+    <button onmouseover="move()">눌러보셈</button> 
+    <script>
+        
+        //페이지 로딩 시점에 1번 해석되는 javascript 영역
+        //alert("hi");
+
+        //특정 시점(이 함수가 호출되는 시점)에 일괄 실행할 javascript를 모아 둘수 있는 함수
+        function move(){
+            alert("hi");
+            //naver로 이동하는 javascript를 작성하면 된다
+            location.href="https://www.naver.com/";
+        } 
+        
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test01.html</title>
+    <style>
+        /* 아이디가 one인 요소에 적용할 css */
+        #one{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+
+    </style>
+</head>
+<body>
+    <div>문단을 나타낼때 div 를 사용한다</div>
+    <p>단락을 나타낼 때 p를 사용합니다</p>
+    <div id="one" onclick="move()">box1</div> 
+    <script> //자바스크립트(동작) 작성 영역        
+        function move() {
+            //자바스크립트로 css 제어하는 방법
+            //id가 one 인 div의 왼쪽 마진을 100px 로 이동하는 javascript 작성
+            document.querySelector("#one").style.marginLeft = "100px";
+            document.querySelector("#one").style.borderRadius = "50%";
+            
+            //배경색 변경
+            document.querySelector("#one").style.backgroundColor = "blue";
+
+        }
+    </script>
+</body>
+</html>

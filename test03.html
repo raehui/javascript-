@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test03.html</title>
+</head>
+<body>
+    <button onclick="change()" id="myBtn">0</button> 
+    <button onclick="change_reset()">Reset</button>
+    <script>
+        //버튼을 눌렀을때 button 의 innerText를 1로 변경해 보세요.
+        
+        //count라는 변수를 만들면서 초기값 0 대입
+        let count=0;
+
+        function change(){
+            //count 변수에 저장된 숫자를 1 증가 시키기
+            count = count +1; 
+
+            //id가 myBtn인 요소의 innerText  를 count 변수에 있는 값으로 변경하기
+            document.querySelector("#myBtn").innerText= count;            
+        }
+        
+        function change_reset() {
+            //count를 0으로 바꾸고 count에 있는 값을 ineerText 에 반영하기
+            count=0;
+            document.querySelector("#myBtn").innerText= count;
+        }
+    </script>
+</body>
+</html>

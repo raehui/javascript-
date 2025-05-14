@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test18.html</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+            margin :100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div> 
+    <script>
+        //.box에 "mousemove" 이벤트가 발생하면 호출할 함수 등록하기 : 선택-> 이벤트 등록(조건, 이벤트 함수로 만들기)
+        document.querySelector(".box").addEventListener("mousemove",function(e){ //e: 발생할 이벤트에 대한 모든 정보가 들어있음
+            console.log("mousemove!");
+            console.log(e);
+            //이벤트가 발생한 곳은 좌표를 얻어내서 변수에 담아보기
+            let x =e.offsetX;
+            let y = e.offsetY;
+            //이벤트가 발생한 바로 그 요소의 참조값을 얻어내서 거기에 innerText 로 출력해보기
+            e.target.innerText = "x:"+x+"y:"+y;
+        });
+    </script>
+    
+</body>
+</html>

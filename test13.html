@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test13.html</title>
+</head>
+<body>
+    <script>
+        let num =20;
+        let mem= {num:30, name:"kim"};
+
+        let f1 = function(a){ //매개변수
+            console.log("매개 변수에 a에 전달된값 :"+a);
+
+        };
+
+        //함수 호출하면서 값을 즉석에서 만들어서 전달
+        f1(10);
+
+        //이미 만들어진 값을 참조해서 전달(변수안에 있는 값)
+        f1(num);
+
+        //이미 만들어진 값을 참조해서 전달(object 안에 있는 값)
+        f1(mem.num);
+        
+        
+
+    </script>
+</body>
+</html>

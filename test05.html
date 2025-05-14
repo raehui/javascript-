@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test05.html</title>
+</head>
+<body>
+    <script>
+        //한줄 주석입니다.
+        
+        /*
+        
+            여러 줄 주석입니다.
+            하나
+            둘
+        */
+
+        /*
+            한명의 회원정보를 javascript 변수에 담아놓고 사용하고 싶다.
+            
+            번호 : 1
+            이름 : 김구라
+            주소 : 노량진 
+
+            3개의 변수에 각각 담아 보세요.
+
+        */
+
+        let num = 1; //number type
+        let name = "김구라"; //string type
+        let addr = "노량진"; //string type
+
+        /*
+            회원 한명의 정보를 하나의 묶음으로 관리해보기
+        */
+
+        let mem1 = {num: 1,name: "김구라",addr: "노량진"}; 
+        let mem2 = {num: 2, name: "해골", addr:"행신동" };
+        let mem3 = {
+            num:3,
+            name: "원숭이",
+            addr: "동물원"
+        };
+        //mem1~3 모두 object type
+        // .은 object의 key값과 관련이 있다!!
+
+        /*
+            글 하나의 정보를 하나의 묶음으로 관리해 보세요
+
+            번호: 1
+            제목: 오늘 할일
+            내용: 공부하기
+            작성자: 김구라
+            작성일: 2024.11.12 
+        */
+
+        let user1 = {
+            num: 1,
+            title: "오늘 할일",
+            content: "공부하기",
+            writer: "김구라",
+            date: "2024.11.12"
+        };
+
+        //순서가 중요한 데이터를 하나의 묶음으로 관리해 보기
+
+        //내가 제일 좋아하는 음식 순서
+        // 0 => 만두
+        // 1 => 국수
+        // 2 => 볶음밥
+        // 3 => 마라탕
+        // 4 => 떡볶이
+
+        let foods = ["만두","국수","볶음밥","마라탕","떡볶이"]; //array type
+           
+
+        
+    </script>
+</body>
+</html>

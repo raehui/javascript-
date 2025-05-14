@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test19.html</title>
+</head>
+<body>
+    <div class="box">0</div>
+    <script>
+        /*
+            setInterval은 builtin 함수이다.
+            첫번째 인자로 전달한 함수는 두번째 인자로 전달한 숫자(시간ms) 주기로
+            계속 호출된다.
+        */
+        let a=0;
+
+        // setInterval(function(){
+        //     console.log("호출됨");
+        //     //a 값을 1 증가 시키고
+        //     a=a++;
+        //     //a 값을 div의 innetText에 출력하기
+        //     document.querySelector(".box").innetText=a;
+        // }, 1000); 
+
+        setInterval(function(){
+            console.log("호출됨");
+            a=a++;
+            document.querySelector(".box").innetText=a;
+        },1000);
+        
+    </script>
+</body>
+</html>
